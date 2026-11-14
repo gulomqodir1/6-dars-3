@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enode | Infrastructure for green energy apps</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#0B6A31',
+              dark: '#075225',
+              hover: '#095929',
+              light: '#EBFADC',
+              lightHover: '#E0F7CC',
+              badge: '#E5F7D3',
+            },
+            surface: {
+              card: '#F8FAF6',
+              cardDark: '#161412',
+              cardBorder: '#E5E8E1',
+              pill: '#F2F4F0',
+              pillHover: '#E7EAE4',
+            },
+            darkSection: '#161412',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            '2xl': '1.25rem',
+            '3xl': '1.75rem',
+            '4xl': '2.25rem',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1a1a1a;
+      background-color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-white text-[#1a1a1a]">
+
+  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Left: Logo & Nav items -->
+      <div class="flex items-center gap-10">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 text-[#1a1a1a] hover:opacity-90 transition">
+          <svg class="w-6 h-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <circle cx="12" cy="12" r="3.5" fill="currentColor"></circle>
+            <path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path>
+          </svg>
+          <span class="font-bold text-2xl tracking-tight text-[#111827]">Enode</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-700">
+          <div class="relative group cursor-pointer">
+            <button class="flex items-center gap-1.5 hover:text-brand transition py-2">
+              Products
+              <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 group-hover:text-brand transition-transform group-hover:rotate-180"></i>
+            </button>
+            <div class="absolute top-full left-0 hidden group-hover:block w-52 bg-white rounded-xl shadow-xl border border-gray-100 p-2 z-50">
+              <a href="#connect" class="block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-brand-light hover:text-brand rounded-lg transition">Connect API</a>
+              <a href="#optimize" class="block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-brand-light hover:text-brand rounded-lg transition">Optimize API</a>
+              <a href="#aggregate" class="block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-brand-light hover:text-brand rounded-lg transition">Aggregate API</a>
+            </div>
+          </div>
+          <a href="#use-cases" class="hover:text-brand transition">Use cases</a>
+          <a href="#pricing" class="hover:text-brand transition">Pricing</a>
+          <div class="relative group cursor-pointer">
+            <button class="flex items-center gap-1.5 hover:text-brand transition py-2">
+              Company
+              <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 group-hover:text-brand transition-transform group-hover:rotate-180"></i>
+            </button>
+            <div class="absolute top-full left-0 hidden group-hover:block w-48 bg-white rounded-xl shadow-xl border border-gray-100 p-2 z-50">
+              <a href="#about" class="block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-brand-light hover:text-brand rounded-lg transition">About us</a>
+              <a href="#blog" class="block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-brand-light hover:text-brand rounded-lg transition">Blog</a>
+              <a href="#careers" class="block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-brand-light hover:text-brand rounded-lg transition">Careers</a>
+            </div>
+          </div>
+          <div class="relative group cursor-pointer">
+            <button class="flex items-center gap-1.5 hover:text-brand transition py-2">
+              Developers
+              <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 group-hover:text-brand transition-transform group-hover:rotate-180"></i>
+            </button>
+            <div class="absolute top-full left-0 hidden group-hover:block w-48 bg-white rounded-xl shadow-xl border border-gray-100 p-2 z-50">
+              <a href="#docs" class="block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-brand-light hover:text-brand rounded-lg transition">Documentation</a>
+              <a href="#api" class="block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-brand-light hover:text-brand rounded-lg transition">API Reference</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="#contact" class="text-sm font-medium text-gray-700 hover:text-brand transition flex items-center gap-1.5 px-3 py-2">
+          Contact sales
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+        <a href="#signup" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-5 py-2.5 rounded-full transition shadow-sm hover:shadow">
+          Start building
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="flex md:hidden">
+        <button id="mobileMenuBtn" class="text-gray-700 p-2 focus:outline-none" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden px-6 pt-2 pb-6 border-b border-gray-100 bg-white">
+      <div class="flex flex-col gap-3 text-base font-medium text-gray-700">
+        <a href="#platform" class="py-2 hover:text-brand border-b border-gray-50">Products</a>
+        <a href="#use-cases" class="py-2 hover:text-brand border-b border-gray-50">Use cases</a>
+        <a href="#pricing" class="py-2 hover:text-brand border-b border-gray-50">Pricing</a>
+        <a href="#about" class="py-2 hover:text-brand border-b border-gray-50">Company</a>
+        <a href="#developer" class="py-2 hover:text-brand border-b border-gray-50">Developers</a>
+        <div class="flex flex-col gap-3 pt-3">
+          <a href="#contact" class="text-center py-2.5 rounded-full bg-surface-pill font-semibold text-sm">Contact sales</a>
+          <a href="#signup" class="text-center py-2.5 rounded-full bg-brand text-white font-semibold text-sm">Start building</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left: Headline & Copy -->
+        <div class="lg:col-span-6 flex flex-col items-start pr-0 lg:pr-6">
+          <h1 class="text-5xl sm:text-6xl lg:text-[68px] font-medium leading-[1.08] tracking-[-0.03em] text-[#111827] mb-6">
+            Infrastructure<br>
+            for green energy<br>
+            apps
+          </h1>
+          <p class="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed mb-8 max-w-lg">
+            Companies of all sizes, from startups to the largest energy companies in the world, use Enode's APIs to create new green energy apps and services.
+          </p>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#signup" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-6 py-3.5 rounded-full transition shadow-sm hover:shadow">
+              Start building
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+            <a href="#contact" class="inline-flex items-center gap-2 bg-surface-pill hover:bg-surface-pillHover text-gray-900 text-sm font-semibold px-6 py-3.5 rounded-full transition">
+              Contact sales
+              <i class="fa-solid fa-arrow-right text-xs text-gray-700"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Overlapping Visual (IDE + Mobile Mockup) -->
+        <div class="lg:col-span-6 relative flex justify-center items-center">
+          
+          <!-- Background Code Terminal (IDE) -->
+          <div class="w-full max-w-[460px] bg-[#1E1E1E] text-gray-300 rounded-2xl shadow-2xl p-5 border border-gray-800 font-mono text-xs translate-x-4 lg:translate-x-12 translate-y-4">
+            <!-- IDE top bar -->
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-gray-800 text-[11px] text-gray-500">
+              <div class="flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-[#FF5F56] inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-[#FFBD2E] inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-[#27C93F] inline-block"></span>
+              </div>
+              <span class="text-gray-400">client.ts</span>
+              <div class="w-10"></div>
+            </div>
+
+            <!-- Code content -->
+            <div class="space-y-1.5 leading-relaxed overflow-x-hidden text-[11.5px]">
+              <div><span class="text-gray-600">1</span> <span class="text-[#569CD6]">const</span> <span class="text-[#9CDCFE]">enodeIssuer</span> = <span class="text-[#C586C0]">await</span> Issuer.<span class="text-[#DCDCAA]">discover</span>()</div>
+              <div><span class="text-gray-600">2</span></div>
+              <div><span class="text-gray-600">3</span> <span class="text-[#569CD6]">const</span> <span class="text-[#9CDCFE]">client</span> = <span class="text-[#569CD6]">new</span> enodeIssuer.<span class="text-[#4EC9B0]">Client</span>({</div>
+              <div><span class="text-gray-600">4</span> &nbsp;&nbsp;<span class="text-[#9CDCFE]">clientId</span>: <span class="text-[#CE9178]">"client_89..."</span>,</div>
+              <div><span class="text-gray-600">5</span> })</div>
+              <div><span class="text-gray-600">6</span></div>
+              <div><span class="text-gray-600">7</span> <span class="text-[#569CD6]">const</span> <span class="text-[#9CDCFE]">vehicle</span> = <span class="text-[#C586C0]">await</span> client.<span class="text-[#DCDCAA]">asUser</span>(<span class="text-[#CE9178]">"8d9..."</span>).<span class="text-[#DCDCAA]">getVehicle</span>()</div>
+              <div><span class="text-gray-600">8</span></div>
+              <div class="relative">
+                <span class="text-gray-600">9</span> <span class="text-[#9CDCFE]">batteryLevel</span> = vehicle.<span class="inline-block w-2 h-4 bg-emerald-400 animate-pulse align-middle"></span>
+
+                <!-- Autocomplete suggestions popup -->
+                <div class="absolute top-6 left-12 w-48 bg-[#252526] border border-[#3E3E42] rounded-lg shadow-xl p-1.5 z-20 text-[11px] font-sans">
+                  <div class="flex items-center gap-2 px-2 py-1 text-emerald-400 bg-[#37373D] rounded">
+                    <i class="fa-solid fa-cube text-[10px]"></i>
+                    <span class="font-mono">id</span>
+                    <span class="text-gray-500 text-[10px] ml-auto">string</span>
+                  </div>
+                  <div class="flex items-center gap-2 px-2 py-1 text-gray-300 hover:bg-[#2A2D2E] rounded">
+                    <i class="fa-solid fa-cube text-[10px] text-gray-500"></i>
+                    <span class="font-mono">lastSeen</span>
+                  </div>
+                  <div class="flex items-center gap-2 px-2 py-1 text-gray-300 hover:bg-[#2A2D2E] rounded">
+                    <i class="fa-solid fa-cube text-[10px] text-gray-500"></i>
+                    <span class="font-mono">isReachable</span>
+                  </div>
+                  <div class="flex items-center gap-2 px-2 py-1 text-gray-300 hover:bg-[#2A2D2E] rounded">
+                    <i class="fa-solid fa-cube text-[10px] text-gray-500"></i>
+                    <span class="font-mono">charging</span>
+                  </div>
+                  <div class="flex items-center gap-2 px-2 py-1 text-gray-300 hover:bg-[#2A2D2E] rounded">
+                    <i class="fa-solid fa-cube text-[10px] text-gray-500"></i>
+                    <span class="font-mono">smartCharging</span>
+                  </div>
+                  <div class="flex items-center gap-2 px-2 py-1 text-gray-300 hover:bg-[#2A2D2E] rounded">
+                    <i class="fa-solid fa-cube text-[10px] text-gray-500"></i>
+                    <span class="font-mono">chargeState</span>
+                  </div>
+                  <div class="flex items-center gap-2 px-2 py-1 text-gray-300 hover:bg-[#2A2D2E] rounded">
+                    <i class="fa-solid fa-cube text-[10px] text-gray-500"></i>
+                    <span class="font-mono">location</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Terminal bottom status -->
+            <div class="mt-20 pt-3 border-t border-gray-800 flex items-center gap-4 text-[10px] text-gray-500">
+              <span class="flex items-center gap-1"><i class="fa-solid fa-triangle-exclamation"></i> 0</span>
+              <span class="flex items-center gap-1"><i class="fa-solid fa-circle-xmark"></i> 0</span>
+              <span class="ml-auto">UTF-8</span>
+              <span>TypeScript</span>
+            </div>
+          </div>
+
+          <!-- Foreground Smartphone Mockup -->
+          <div class="absolute -left-2 sm:left-4 lg:-left-4 top-2 w-[310px] sm:w-[325px] bg-[#0E3D1F] p-3 rounded-[40px] shadow-2xl border-4 border-[#072B15] transform -rotate-1 hover:rotate-0 transition duration-300">
+            <!-- Screen container -->
+            <div class="bg-white rounded-[32px] overflow-hidden p-4 pt-3 flex flex-col justify-between text-gray-800 min-h-[510px]">
+              
+              <!-- Phone Status Header -->
+              <div class="flex items-center justify-between mb-3 text-xs text-gray-500">
+                <div>
+                  <h3 class="font-bold text-gray-900 text-sm">Good afternoon, Nora!</h3>
+                  <p class="text-[11px] text-gray-400 flex items-center gap-1">Nordlysveien 25B <i class="fa-solid fa-chevron-right text-[8px]"></i></p>
+                </div>
+                <button class="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200">
+                  <i class="fa-solid fa-gear text-xs"></i>
+                </button>
+              </div>
+
+              <!-- Stat Mini Cards (Live Price & Temperature) -->
+              <div class="grid grid-cols-2 gap-2 mb-3">
+                <div class="bg-[#F8FAF6] p-2.5 rounded-xl border border-gray-100">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-base font-bold text-gray-900">131 <span class="text-xs font-normal">øre</span></span>
+                    <!-- Green wave mini chart -->
+                    <svg class="w-8 h-4 text-emerald-500" viewBox="0 0 40 20" fill="none">
+                      <path d="M0 15 C 10 5, 20 18, 30 8 L 40 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="text-[10px] text-gray-500 flex items-center gap-1">
+                    <i class="fa-solid fa-wifi text-[9px] text-emerald-600"></i> Live price
+                  </div>
+                </div>
+
+                <div class="bg-[#F8FAF6] p-2.5 rounded-xl border border-gray-100">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-base font-bold text-gray-900">-2°C</span>
+                    <!-- Grey wave mini chart -->
+                    <svg class="w-8 h-4 text-gray-400" viewBox="0 0 40 20" fill="none">
+                      <path d="M0 8 C 10 16, 25 4, 40 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="text-[10px] text-gray-500 flex items-center gap-1">
+                    <i class="fa-solid fa-sun text-[9px] text-amber-500"></i> Sunny
+                  </div>
+                </div>
+              </div>
+
+              <!-- Smart Charging Card -->
+              <div class="bg-[#F8FAF6] p-3 rounded-xl border border-gray-100 mb-3">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-1.5 text-xs font-semibold text-gray-800">
+                    <i class="fa-solid fa-bolt text-amber-500 text-[11px]"></i>
+                    Smart charging
+                  </div>
+                  <!-- Active Toggle -->
+                  <div class="w-9 h-5 bg-amber-400 rounded-full flex items-center p-0.5 justify-end cursor-pointer">
+                    <div class="w-4 h-4 bg-white rounded-full shadow"></div>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between text-xs bg-white p-2 rounded-lg border border-gray-100">
+                  <div class="flex items-center gap-2">
+                    <div class="w-5 h-5 rounded bg-red-100 text-red-600 flex items-center justify-center font-bold text-[10px]">T</div>
+                    <span class="font-medium text-gray-800 text-[11px]">Model 3</span>
+                  </div>
+                  <div class="text-[11px] font-semibold text-gray-700">
+                    <span class="text-emerald-700">90%</span> by <span class="bg-gray-100 px-1.5 py-0.5 rounded text-gray-900 font-mono text-[10px]">07:30</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Energy Usage Card -->
+              <div class="bg-[#F8FAF6] p-3 rounded-xl border border-gray-100 mb-2">
+                <div class="text-[11px] font-semibold text-gray-700 mb-2 flex items-center gap-1">
+                  <i class="fa-regular fa-clock text-emerald-600"></i> Energy usage
+                </div>
+                <div class="flex items-center gap-4 mb-3">
+                  <div>
+                    <span class="text-base font-bold text-gray-900">4.1 <span class="text-xs font-normal">kWh</span></span>
+                    <div class="text-[10px] text-gray-500 flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-amber-400"></span> From solar
+                    </div>
+                  </div>
+                  <div class="h-6 w-px bg-gray-200"></div>
+                  <div>
+                    <span class="text-base font-bold text-gray-900">19 <span class="text-xs font-normal">kWh</span></span>
+                    <div class="text-[10px] text-gray-500 flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span> From grid
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bar chart visualization -->
+                <div class="flex items-end justify-between gap-1 h-14 pt-2">
+                  <div class="w-2 bg-emerald-400 rounded-t h-[40%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[60%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[50%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[75%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[95%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[70%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[80%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[85%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[90%]"></div>
+                  <div class="w-2 bg-emerald-400 rounded-t h-[50%]"></div>
+                  <div class="w-2 bg-gray-200 rounded-t h-[15%]"></div>
+                  <div class="w-2 bg-gray-200 rounded-t h-[15%]"></div>
+                  <div class="w-2 bg-gray-200 rounded-t h-[15%]"></div>
+                  <div class="w-2 bg-gray-200 rounded-t h-[15%]"></div>
+                </div>
+                <div class="flex justify-between text-[9px] text-gray-400 font-mono mt-1 border-t border-gray-100 pt-1">
+                  <span>00</span>
+                  <span>06:00</span>
+                  <span>12:00</span>
+                  <span>18:00</span>
+                  <span>00</span>
+                </div>
+              </div>
+
+              <!-- Bottom Bar Nav inside App -->
+              <div class="pt-2 border-t border-gray-100 flex items-center justify-around text-gray-400 text-sm">
+                <button class="text-brand"><i class="fa-solid fa-house"></i></button>
+                <button class="hover:text-gray-600"><i class="fa-solid fa-chart-simple"></i></button>
+                <button class="hover:text-gray-600"><i class="fa-solid fa-car"></i></button>
+                <button class="hover:text-gray-600"><i class="fa-regular fa-user"></i></button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PARTNER LOGOS BAR ==================== -->
+  <section class="border-y border-gray-100 py-10 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-between gap-8 md:gap-12 opacity-85 grayscale hover:grayscale-0 transition-all duration-300">
+        
+        <!-- Fjordkraft -->
+        <div class="flex items-center gap-2 font-bold text-xl tracking-tight text-gray-800">
+          <svg class="w-6 h-6 text-emerald-600" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="9" cy="12" r="3"/>
+            <circle cx="15" cy="12" r="3"/>
+          </svg>
+          <span>Fjordkraft</span>
+        </div>
+
+        <!-- E.ON -->
+        <div class="flex items-center font-extrabold text-2xl tracking-tighter text-red-600">
+          <span class="italic">e·on</span>
+        </div>
+
+        <!-- Elton -->
+        <div class="flex items-center gap-2 font-bold text-xl tracking-tight text-gray-800">
+          <div class="w-6 h-6 rounded-full border-2 border-gray-800 flex items-center justify-center text-xs font-mono">E</div>
+          <span>Elton</span>
+        </div>
+
+        <!-- Statkraft -->
+        <div class="flex items-center gap-2 font-bold text-xl tracking-tight text-gray-800">
+          <svg class="w-7 h-7 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 3a9 9 0 0 1 0 18"/>
+          </svg>
+          <span>Statkraft</span>
+        </div>
+
+        <!-- ZAP MAP -->
+        <div class="flex items-center gap-1 font-black text-xl tracking-tight text-gray-800">
+          <span>ZAP</span>
+          <span class="text-emerald-600"><i class="fa-solid fa-bolt text-sm"></i></span>
+          <span>MAP</span>
+        </div>
+
+        <!-- Gudbrandsdal Energi -->
+        <div class="flex items-center gap-2 font-semibold text-sm tracking-tight text-gray-800">
+          <div class="w-7 h-7 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px] font-bold">GE</div>
+          <div class="leading-tight text-xs font-bold text-left">
+            Gudbrandsdal<br><span class="font-normal text-gray-500">Energi</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PLATFORM ARCHITECTURE SECTION ==================== -->
+  <section id="platform" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Title & Subheading -->
+      <div class="mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand mb-3 block">Our platform</span>
+        <h2 class="text-4xl sm:text-5xl font-medium tracking-tight text-[#111827] max-w-2xl leading-[1.12]">
+          The A-Z of what you need to build the future of green energy apps
+        </h2>
+      </div>
+
+      <!-- Two column description -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-base text-gray-600 leading-relaxed mb-16">
+        <div class="space-y-4">
+          <p>
+            A fully renewable energy system is dependent on flexible demand that can adapt to the intermittent supply from wind and solar. To create this flexibility, we need to connect and control the fast-growing demand from electric vehicles, heat pumps, and other energy hardware.
+          </p>
+          <p>
+            <strong class="font-semibold text-gray-900"><span class="text-brand">Connect API</span></strong> handles the complex task of connecting to and controlling all energy hardware OEMs across electric vehicles, thermostats, solar inverters, and home batteries.
+          </p>
+        </div>
+        <div class="space-y-4">
+          <p>
+            <strong class="font-semibold text-gray-900"><span class="text-brand">Optimize API</span></strong> features, including smart EV charging, help your users consume energy in an innovative, more sustainable way.
+          </p>
+          <p>
+            <strong class="font-semibold text-gray-900"><span class="text-brand">Aggregate API</span></strong> lets you control and monetize all of your users' energy hardware as a single virtual power plant.
+          </p>
+          <p class="font-medium text-gray-800">
+            That way, you can focus on building the best green energy apps the world has seen.
+          </p>
+        </div>
+      </div>
+
+      <!-- Diagram Card -->
+      <div class="bg-[#FAFBF9] border border-[#E9EBE4] rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden">
+        
+        <!-- Toggle Pill Switcher -->
+        <div class="flex justify-center mb-12">
+          <div class="inline-flex bg-white p-1 rounded-full border border-gray-200 shadow-sm">
+            <button id="btnWithEnode" class="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold bg-brand text-white transition shadow-sm">
+              With Enode
+            </button>
+            <button id="btnWithoutEnode" class="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 transition">
+              Without Enode
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Diagram Layout -->
+        <div id="diagramContainer" class="max-w-5xl mx-auto py-4">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Column 1: Sources & App -->
+            <div class="lg:col-span-3 flex flex-col gap-6 items-center lg:items-start">
+              
+              <!-- Sources -->
+              <div class="flex flex-col gap-2 w-full max-w-[200px]">
+                <div class="bg-[#0D3B23] text-white text-[11px] font-medium py-1.5 px-3 rounded-full flex items-center gap-2 shadow-sm">
+                  <i class="fa-solid fa-globe text-[10px] text-emerald-400"></i>
+                  Third party sources
+                </div>
+                <div class="bg-[#0C4E3D] text-white text-[11px] font-medium py-1.5 px-3 rounded-full flex items-center gap-2 shadow-sm">
+                  <i class="fa-solid fa-bolt text-[10px] text-teal-300"></i>
+                  Electricity market data
+                </div>
+              </div>
+
+              <!-- Connector Lines (Visual) -->
+              <div class="hidden lg:block w-full h-4 border-l-2 border-b-2 border-emerald-600/40 ml-16 rounded-bl-xl"></div>
+
+              <!-- Your App Card -->
+              <div class="flex flex-col items-center">
+                <div class="w-16 h-16 rounded-2xl bg-[#FFE4A0] flex items-center justify-center shadow-md border border-amber-200 hover:scale-105 transition">
+                  <svg class="w-8 h-8 text-amber-900" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12 4 4 18 20 18" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+                    <circle cx="12" cy="14" r="2"/>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold text-gray-700 mt-2">Your app</span>
+              </div>
+
+            </div>
+
+            <!-- Column 2: Enode Hub & Core APIs -->
+            <div class="lg:col-span-4 flex flex-col items-center justify-center gap-6 relative">
+              
+              <!-- Enode Hub Icon -->
+              <div class="flex flex-col items-center">
+                <div class="w-16 h-16 rounded-2xl bg-brand text-white flex items-center justify-center shadow-lg border-2 border-emerald-700 hover:scale-105 transition">
+                  <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <circle cx="12" cy="12" r="3.5" fill="currentColor"></circle>
+                  </svg>
+                </div>
+                <span class="text-xs font-bold text-brand mt-2">Enode</span>
+              </div>
+
+              <!-- Vertical Stack of 3 APIs with connector lines -->
+              <div class="flex flex-col gap-3 w-full max-w-[210px] bg-white p-3 rounded-2xl border border-gray-200/80 shadow-sm">
+                
+                <!-- Optimize API -->
+                <div class="bg-[#1B3624] text-white text-xs font-semibold py-2 px-3 rounded-xl flex items-center gap-2">
+                  <i class="fa-regular fa-sun text-emerald-400"></i>
+                  Optimize API
+                </div>
+
+                <!-- Connect API (highlighted) -->
+                <div class="bg-[#122A1C] text-white text-xs font-semibold py-2 px-3 rounded-xl flex items-center gap-2 border border-emerald-500">
+                  <i class="fa-solid fa-code-merge text-emerald-400"></i>
+                  Connect API
+                </div>
+
+                <!-- Aggregate API -->
+                <div class="bg-[#1B3624] text-white text-xs font-semibold py-2 px-3 rounded-xl flex items-center gap-2">
+                  <i class="fa-solid fa-network-wired text-emerald-400"></i>
+                  Aggregate API
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Column 3: Hardware Categories & Brand Badges -->
+            <div class="lg:col-span-5 flex flex-col gap-3.5">
+              
+              <!-- Electric vehicles -->
+              <div class="flex items-center gap-3">
+                <div class="bg-[#153420] text-white text-[11px] font-semibold py-1.5 px-3 rounded-full flex items-center gap-1.5 shrink-0">
+                  <i class="fa-solid fa-car text-[10px]"></i>
+                  Electric vehicles
+                </div>
+                <div class="flex-1 bg-white border border-dashed border-gray-300 rounded-xl px-3 py-1.5 flex items-center gap-3 shadow-xs">
+                  <div class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center font-bold text-[9px]">VW</div>
+                  <div class="w-6 h-6 rounded-full bg-red-50 text-red-600 flex items-center justify-center font-bold text-[10px]">T</div>
+                  <div class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center font-bold text-[8px]">VOL</div>
+                  <span class="text-[10px] font-mono bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-semibold">+21</span>
+                </div>
+              </div>
+
+              <!-- Home chargers -->
+              <div class="flex items-center gap-3">
+                <div class="bg-[#153420] text-white text-[11px] font-semibold py-1.5 px-3 rounded-full flex items-center gap-1.5 shrink-0">
+                  <i class="fa-solid fa-charging-station text-[10px]"></i>
+                  Home chargers
+                </div>
+                <div class="flex-1 bg-white border border-dashed border-gray-300 rounded-xl px-3 py-1.5 flex items-center gap-3 shadow-xs">
+                  <span class="text-xs font-bold text-gray-800">easee</span>
+                  <span class="text-xs font-black text-blue-600">eo</span>
+                  <span class="text-[10px] font-mono bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-semibold">+3</span>
+                </div>
+              </div>
+
+              <!-- HVACs -->
+              <div class="flex items-center gap-3">
+                <div class="bg-[#153420] text-white text-[11px] font-semibold py-1.5 px-3 rounded-full flex items-center gap-1.5 shrink-0">
+                  <i class="fa-solid fa-temperature-half text-[10px]"></i>
+                  HVACs
+                </div>
+                <div class="flex-1 bg-white border border-dashed border-gray-300 rounded-xl px-3 py-1.5 flex items-center gap-3 shadow-xs">
+                  <span class="text-xs font-bold text-red-600">Honeywell</span>
+                  <i class="fa-solid fa-fan text-xs text-red-500"></i>
+                  <span class="text-[10px] font-mono bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-semibold">+4</span>
+                </div>
+              </div>
+
+              <!-- Solar inverters -->
+              <div class="flex items-center gap-3">
+                <div class="bg-[#153420] text-white text-[11px] font-semibold py-1.5 px-3 rounded-full flex items-center gap-1.5 shrink-0">
+                  <i class="fa-solid fa-solar-panel text-[10px]"></i>
+                  Solar inverters
+                </div>
+                <div class="flex-1 bg-white border border-dashed border-gray-300 rounded-xl px-3 py-1.5 flex items-center gap-3 shadow-xs">
+                  <span class="text-xs font-bold text-red-600">Fronius</span>
+                  <span class="text-xs font-semibold text-orange-600">ENPHASE</span>
+                  <span class="text-[10px] font-mono bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-semibold">+5</span>
+                </div>
+              </div>
+
+              <!-- Home batteries -->
+              <div class="flex items-center gap-3">
+                <div class="bg-[#153420] text-white text-[11px] font-semibold py-1.5 px-3 rounded-full flex items-center gap-1.5 shrink-0">
+                  <i class="fa-solid fa-battery-three-quarters text-[10px]"></i>
+                  Home batteries
+                </div>
+                <div class="flex-1 bg-white border border-dashed border-gray-300 rounded-xl px-3 py-1.5 flex items-center gap-3 shadow-xs">
+                  <span class="text-[11px] font-semibold text-gray-800">POWERWALL</span>
+                  <span class="text-xs font-bold text-teal-700">SIEMENS</span>
+                  <span class="text-[10px] font-mono bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-semibold">+1</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Diagram Legend -->
+          <div class="mt-12 pt-6 border-t border-gray-200/80 flex flex-wrap items-center justify-center gap-6 text-xs text-gray-600">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-[#FFE4A0] text-amber-900 font-bold flex items-center justify-center text-[10px]">1</span>
+              <span>connection handled by you</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-brand-light text-brand font-bold text-[10px]">45+</span>
+              <span>connections handled by Enode</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FEATURE 1: CONNECT ==================== -->
+  <section id="connect" class="py-24 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left: Details -->
+        <div class="lg:col-span-5 flex flex-col items-start">
+          <div class="inline-flex items-center gap-2 text-xs font-bold text-brand uppercase tracking-wider mb-3">
+            <i class="fa-solid fa-circle-nodes text-sm"></i>
+            Connect
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#111827] leading-[1.15] mb-5">
+            One powerful API, hundreds of EVs and energy devices
+          </h2>
+          <p class="text-base text-gray-600 mb-8 leading-relaxed">
+            Easily connect to and control your customers' electric vehicles, thermostats, solar panels and more.
+          </p>
+
+          <!-- Checklist -->
+          <ul class="space-y-3.5 mb-8 text-sm font-medium text-gray-800">
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              One API for over 20+ hardware brands
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              100+ devices supported and counting
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              SDKs and ready-built connection flows
+            </li>
+          </ul>
+
+          <a href="#learn-connect" class="inline-flex items-center gap-2 bg-surface-pill hover:bg-surface-pillHover text-gray-800 font-semibold text-xs px-4 py-2 rounded-full transition">
+            Learn more
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Right: Mobile Connection Flow + JSON Inspector -->
+        <div class="lg:col-span-7 flex flex-col md:flex-row items-center justify-center gap-4">
+          
+          <!-- Mobile In-App Linking Sheet -->
+          <div class="w-full max-w-[280px] bg-white border border-gray-200 rounded-3xl shadow-xl p-4 flex flex-col justify-between">
+            <div>
+              <!-- Modal Top Bar -->
+              <div class="flex items-center justify-between pb-3 border-b border-gray-100 text-xs text-gray-400">
+                <i class="fa-solid fa-chevron-left text-gray-600 cursor-pointer"></i>
+                <div class="flex items-center gap-1.5 text-[11px] font-bold text-gray-700">
+                  <span class="text-red-500 italic">e·on</span>
+                  <span>—</span>
+                  <div class="w-3.5 h-3.5 rounded-full bg-brand flex items-center justify-center text-white text-[7px]"><i class="fa-solid fa-bolt"></i></div>
+                  <span>—</span>
+                  <span>VW</span>
+                </div>
+                <i class="fa-solid fa-xmark text-gray-600 cursor-pointer"></i>
+              </div>
+
+              <!-- Title & Copy -->
+              <div class="py-4">
+                <h4 class="font-bold text-base text-gray-900 mb-1">Vehicles found</h4>
+                <p class="text-xs text-gray-500 leading-normal">
+                  We found the following vehicles linked to your Volkswagen account. You will be able to control both through E.ON.
+                </p>
+              </div>
+
+              <!-- Vehicles List -->
+              <div class="space-y-2 mb-4">
+                <div class="flex items-center justify-between p-2.5 rounded-xl border border-emerald-500 bg-brand-light/30">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center font-bold text-[9px]">VW</div>
+                    <span class="text-xs font-semibold text-gray-900">VW e-up! Range</span>
+                  </div>
+                  <i class="fa-solid fa-circle-check text-brand text-sm"></i>
+                </div>
+
+                <div class="flex items-center justify-between p-2.5 rounded-xl border border-emerald-500 bg-brand-light/30">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center font-bold text-[9px]">VW</div>
+                    <span class="text-xs font-semibold text-gray-900">VW ID.3</span>
+                  </div>
+                  <i class="fa-solid fa-circle-check text-brand text-sm"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Continue button -->
+            <button class="w-full py-2.5 bg-brand hover:bg-brand-hover text-white rounded-xl font-semibold text-xs transition shadow-sm">
+              Continue
+            </button>
+          </div>
+
+          <!-- Connector Badge -->
+          <div class="hidden md:flex flex-col items-center">
+            <span class="bg-[#122A1C] text-white text-[10px] font-mono px-2 py-0.5 rounded-full">vehicle</span>
+            <div class="w-8 h-px bg-gray-400"></div>
+          </div>
+
+          <!-- Live JSON Inspector Box -->
+          <div class="w-full max-w-[320px] bg-[#161B16] text-[#A9B7C6] rounded-2xl p-4 font-mono text-[11px] border border-gray-800 shadow-xl overflow-hidden leading-relaxed custom-scrollbar">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-gray-800 text-[10px] text-gray-500 font-sans">
+              <span class="text-emerald-400">Live JSON Payload</span>
+              <span class="text-gray-400">200 OK</span>
+            </div>
+            <pre class="text-gray-300 whitespace-pre"><code><span class="text-gray-500">id:</span> <span class="text-[#CE9178]">"8d90101b-3f2f-462a"</span>
+<span class="text-gray-500">isReachable:</span> <span class="text-amber-400">true</span>
+<span class="text-gray-500">capabilities:</span> <span class="text-gray-500">{...}</span>
+<span class="text-gray-500">chargeState:</span> {
+  <span class="text-gray-400">batteryLevel:</span> <span class="text-emerald-400">38</span>
+  <span class="text-gray-400">range:</span> <span class="text-emerald-400">127.5</span>
+  <span class="text-gray-400">isPluggedIn:</span> <span class="text-amber-400">false</span>
+  <span class="text-gray-400">isCharging:</span> <span class="text-amber-400">false</span>
+  <span class="text-gray-400">isFullyCharged:</span> <span class="text-amber-400">false</span>
+  <span class="text-gray-400">batteryCapacity:</span> <span class="text-emerald-400">73.21</span>
+  <span class="text-gray-400">chargeLimit:</span> <span class="text-emerald-400">80</span>
+  <span class="text-gray-400">chargeRate:</span> <span class="text-gray-500">null</span>
+  <span class="text-gray-400">chargeTimeRemaining:</span> <span class="text-gray-500">null</span>
+}
+<span class="text-gray-500">odometer:</span> <span class="text-gray-500">{...}</span>
+<span class="text-gray-500">information:</span> <span class="text-gray-500">{...}</span>
+<span class="text-gray-500">location:</span> <span class="text-gray-500">{...}</span></code></pre>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURE 2: OPTIMIZE ==================== -->
+  <section id="optimize" class="py-24 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left: Smart Charging Phone Mockup with Pie / Donut -->
+        <div class="lg:col-span-7 flex justify-center order-2 lg:order-1 relative">
+          
+          <!-- Background Layered Card (Energy Consumption breakdown) -->
+          <div class="w-64 bg-gray-50 rounded-3xl border border-gray-200 p-4 -rotate-6 translate-x-6 translate-y-6 shadow-sm opacity-80 hidden sm:block">
+            <span class="text-[11px] font-semibold text-gray-500 block mb-3">Energy consumption by category</span>
+            <div class="flex items-center justify-center my-4">
+              <div class="relative w-28 h-28 rounded-full border-8 border-gray-200 flex items-center justify-center">
+                <span class="text-xs font-bold text-gray-700">100%</span>
+              </div>
+            </div>
+            <div class="space-y-1.5 text-[10px] text-gray-600">
+              <div class="flex justify-between"><span>Heating and cooling</span> <span class="font-bold">23%</span></div>
+              <div class="flex justify-between"><span>Electric vehicle</span> <span class="font-bold">17%</span></div>
+              <div class="flex justify-between"><span>Lifestyle</span> <span class="font-bold">6%</span></div>
+            </div>
+          </div>
+
+          <!-- Foreground Main Mobile Card -->
+          <div class="w-full max-w-[310px] bg-white border border-gray-200 rounded-[32px] shadow-2xl p-5 z-10">
+            <!-- Header -->
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-gray-100">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center font-bold text-[9px]">VW</div>
+                <span class="text-xs font-bold text-gray-900">Abdi's ID.4 GTX</span>
+              </div>
+              <!-- Toggle -->
+              <div class="w-8 h-4.5 bg-amber-400 rounded-full flex items-center p-0.5 justify-end cursor-pointer">
+                <div class="w-3.5 h-3.5 bg-white rounded-full shadow"></div>
+              </div>
+            </div>
+
+            <!-- Target Selection -->
+            <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-100 flex items-center justify-between text-xs mb-4">
+              <span class="text-gray-500 text-[11px]">Charge to</span>
+              <div class="flex items-center gap-2 font-semibold">
+                <span class="bg-white px-2 py-0.5 rounded border border-gray-200 text-gray-800">80%</span>
+                <span class="text-gray-500 text-[11px]">by</span>
+                <span class="bg-white px-2 py-0.5 rounded border border-gray-200 text-gray-800">08:30 <i class="fa-solid fa-chevron-down text-[8px] text-gray-400"></i></span>
+              </div>
+            </div>
+
+            <!-- Circular Donut Chart for battery / charge -->
+            <div class="flex flex-col items-center justify-center my-6">
+              <div class="relative w-36 h-36 flex items-center justify-center">
+                <!-- SVG Circle progress -->
+                <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" stroke="#F3F4F6" stroke-width="12" fill="none" />
+                  <circle cx="50" cy="50" r="40" stroke="#0B6A31" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="180" stroke-linecap="round" fill="none" />
+                  <circle cx="50" cy="50" r="40" stroke="#FBBF24" stroke-width="12" stroke-dasharray="251.2" stroke-dashoffset="220" stroke-linecap="round" fill="none" />
+                </svg>
+                <div class="absolute flex flex-col items-center">
+                  <span class="text-3xl font-extrabold text-gray-900">12%</span>
+                </div>
+              </div>
+              <span class="mt-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full">
+                <i class="fa-solid fa-pause text-[9px] text-gray-500"></i> Charging paused
+              </span>
+            </div>
+
+            <!-- Savings stats -->
+            <div class="border-t border-gray-100 pt-3 space-y-2 text-xs">
+              <div class="flex justify-between items-center">
+                <span class="text-gray-500">Cost savings</span>
+                <span class="font-bold text-gray-900">27 kr</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-500">CO₂ savings</span>
+                <span class="font-bold text-gray-900">1.04 kg</span>
+              </div>
+            </div>
+
+            <!-- Skeleton bars -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center gap-2">
+              <div class="h-2 w-16 bg-gray-100 rounded-full"></div>
+              <div class="h-2 w-8 bg-gray-100 rounded-full"></div>
+              <div class="w-3 h-3 rounded-full bg-gray-200 ml-auto"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Description -->
+        <div class="lg:col-span-5 flex flex-col items-start order-1 lg:order-2">
+          <div class="inline-flex items-center gap-2 text-xs font-bold text-brand uppercase tracking-wider mb-3">
+            <i class="fa-regular fa-sun text-sm"></i>
+            Optimize
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#111827] leading-[1.15] mb-5">
+            Enable smart energy use cases for your customers
+          </h2>
+          <p class="text-base text-gray-600 mb-8 leading-relaxed">
+            Ready-made building blocks to help your customers consume energy in a smarter, more sustainable way.
+          </p>
+
+          <!-- Checklist -->
+          <ul class="space-y-3.5 mb-8 text-sm font-medium text-gray-800">
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              Out-of-the-box smart charging APIs
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              Statistics and insights APIs
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              Endpoints to build your own features
+            </li>
+          </ul>
+
+          <a href="#learn-optimize" class="inline-flex items-center gap-2 bg-surface-pill hover:bg-surface-pillHover text-gray-800 font-semibold text-xs px-4 py-2 rounded-full transition">
+            Learn more
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURE 3: AGGREGATE ==================== -->
+  <section id="aggregate" class="py-24 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left: Details -->
+        <div class="lg:col-span-5 flex flex-col items-start">
+          <div class="inline-flex items-center gap-2 text-xs font-bold text-brand uppercase tracking-wider mb-3">
+            <i class="fa-solid fa-network-wired text-sm"></i>
+            Aggregate
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#111827] leading-[1.15] mb-5">
+            Accelerate the transition to a sustainable future
+          </h2>
+          <p class="text-base text-gray-600 mb-8 leading-relaxed">
+            Aggregation of flexible demand is key to a grid powered by renewable energy. By aggregating your customer's energy loads you can smooth out intermittencies caused by renewables. It also provides new revenue streams for your business.
+          </p>
+
+          <!-- Checklist -->
+          <ul class="space-y-3.5 mb-8 text-sm font-medium text-gray-800">
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              Participate in flexibility markets
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              Unlock new revenue streams
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-gray-900 text-white flex items-center justify-center text-[10px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              Monitoring, demand response and reporting APIs
+            </li>
+          </ul>
+
+          <a href="#learn-aggregate" class="inline-flex items-center gap-2 bg-surface-pill hover:bg-surface-pillHover text-gray-800 font-semibold text-xs px-4 py-2 rounded-full transition">
+            Learn more
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Right: Demand Response Live Dashboard Visual -->
+        <div class="lg:col-span-7 flex justify-center">
+          <div class="w-full max-w-lg bg-white border border-gray-200 rounded-3xl shadow-xl p-6 relative">
+            
+            <!-- Dashboard Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-gray-100">
+              <div>
+                <h4 class="font-bold text-gray-900 text-base">Demand response</h4>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-brand px-3 py-1 rounded-full">
+                  <i class="fa-solid fa-tower-broadcast text-[10px]"></i>
+                  Activated
+                </span>
+                <div class="w-8 h-4.5 bg-brand rounded-full flex items-center p-0.5 justify-end">
+                  <div class="w-3.5 h-3.5 bg-white rounded-full"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Two Load Stats with mini sparklines -->
+            <div class="grid grid-cols-2 gap-4 my-4">
+              <!-- Available flexible load -->
+              <div class="p-3 bg-[#FAFBF9] rounded-2xl border border-gray-100 relative">
+                <span class="text-[11px] font-semibold text-gray-500 block mb-1">Available flexible load <i class="fa-solid fa-chevron-right text-[8px]"></i></span>
+                <div class="flex items-center justify-between">
+                  <span class="text-2xl font-bold text-brand">1652 <span class="text-xs font-semibold text-gray-800">kW</span></span>
+                  <svg class="w-12 h-6 text-brand" viewBox="0 0 60 20" fill="none">
+                    <path d="M0 10 Q 15 0, 30 10 T 60 10" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                  </svg>
+                </div>
+                <!-- Tag indicator -->
+                <span class="absolute -right-2 -bottom-2 bg-[#0E3D1F] text-white text-[9px] font-mono px-2 py-0.5 rounded-full">availableLoad</span>
+              </div>
+
+              <!-- Used flexible load -->
+              <div class="p-3 bg-[#FAFBF9] rounded-2xl border border-gray-100 relative">
+                <span class="text-[11px] font-semibold text-gray-500 block mb-1">Used flexible load <i class="fa-solid fa-chevron-right text-[8px]"></i></span>
+                <div class="flex items-center justify-between">
+                  <span class="text-2xl font-bold text-gray-900">475 <span class="text-xs font-semibold text-gray-800">kW</span></span>
+                  <svg class="w-12 h-6 text-amber-500" viewBox="0 0 60 20" fill="none">
+                    <path d="M0 15 Q 15 5, 30 15 T 60 15" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                  </svg>
+                </div>
+                <!-- Tag indicator -->
+                <span class="absolute -right-2 -bottom-2 bg-[#1A1815] text-white text-[9px] font-mono px-2 py-0.5 rounded-full">usedLoad</span>
+              </div>
+            </div>
+
+            <!-- Table of connected devices -->
+            <div class="mt-6">
+              <div class="grid grid-cols-3 text-[11px] font-semibold text-gray-400 pb-2 border-b border-gray-100">
+                <span>Device ID</span>
+                <span>State</span>
+                <span class="text-right">Charge rate</span>
+              </div>
+
+              <div class="space-y-3 pt-3 text-xs">
+                <!-- Device 1 -->
+                <div class="grid grid-cols-3 items-center">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded bg-red-50 text-red-600 flex items-center justify-center font-bold text-[9px]">T</div>
+                    <span class="font-mono font-medium text-gray-800">#62136</span>
+                  </div>
+                  <div>
+                    <span class="inline-flex items-center gap-1 text-[10px] text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full font-medium">
+                      <i class="fa-solid fa-pause text-[8px]"></i> Paused
+                    </span>
+                  </div>
+                  <div class="text-right font-mono font-medium text-gray-500">
+                    ⚡ 0 kW
+                  </div>
+                </div>
+
+                <!-- Device 2 -->
+                <div class="grid grid-cols-3 items-center">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-[9px]">S</div>
+                    <span class="font-mono font-medium text-gray-800">#53512</span>
+                  </div>
+                  <div>
+                    <span class="inline-flex items-center gap-1 text-[10px] text-brand bg-brand-light px-2 py-0.5 rounded-full font-semibold">
+                      <i class="fa-solid fa-bolt text-[8px]"></i> Charging
+                    </span>
+                  </div>
+                  <div class="text-right font-mono font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded inline-block justify-self-end">
+                    ⚡ 2 kW
+                  </div>
+                </div>
+
+                <!-- Device 3 -->
+                <div class="grid grid-cols-3 items-center">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center font-bold text-[8px]">VW</div>
+                    <span class="font-mono font-medium text-gray-800">#64513</span>
+                  </div>
+                  <div>
+                    <span class="inline-flex items-center gap-1 text-[10px] text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full font-medium">
+                      <i class="fa-solid fa-pause text-[8px]"></i> Paused
+                    </span>
+                  </div>
+                  <div class="text-right font-mono font-medium text-gray-500">
+                    ⚡ 0 kW
+                  </div>
+                </div>
+
+                <!-- Device 4 -->
+                <div class="grid grid-cols-3 items-center opacity-70">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-[9px]">E</div>
+                    <span class="font-mono font-medium text-gray-800">#12351</span>
+                  </div>
+                  <div>
+                    <span class="inline-flex items-center gap-1 text-[10px] text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full font-medium">
+                      <i class="fa-solid fa-pause text-[8px]"></i> Paused
+                    </span>
+                  </div>
+                  <div class="text-right font-mono font-medium text-gray-500">
+                    ⚡ 0 kW
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom time filter label -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-end text-[10px] text-gray-400 font-mono">
+              <span><i class="fa-regular fa-clock"></i> Last 30 min</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DEVELOPER CALLOUT (DARK SECTION) ==================== -->
+  <section id="developer" class="bg-darkSection text-white py-24 sm:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-emerald-400 tracking-wider uppercase mb-4 block">
+          By developers, for developers
+        </span>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white mb-6 leading-[1.12]">
+          A single API for hundreds of green energy devices
+        </h2>
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed mb-8">
+          Access and control 100s of EV models and energy devices through a few lines of code, and save months of tedious integration work.
+        </p>
+
+        <!-- Checklist -->
+        <ul class="space-y-3.5 mb-10 text-sm font-medium text-gray-200">
+          <li class="flex items-center gap-3">
+            <span class="w-5 h-5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-600 flex items-center justify-center text-[10px]">
+              <i class="fa-solid fa-check"></i>
+            </span>
+            A single RESTful API for all connections
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-5 h-5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-600 flex items-center justify-center text-[10px]">
+              <i class="fa-solid fa-check"></i>
+            </span>
+            Web and native SDKs for hardware connection
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-5 h-5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-600 flex items-center justify-center text-[10px]">
+              <i class="fa-solid fa-check"></i>
+            </span>
+            Enterprise grade security by design
+          </li>
+        </ul>
+
+        <a href="#docs" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-6 py-3 rounded-full transition shadow-md">
+          Read our docs
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY ENODE & STATS GRID ==================== -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left: Why Enode text -->
+        <div class="lg:col-span-5 flex flex-col items-start">
+          <span class="text-xs font-bold text-brand uppercase tracking-wider mb-3 block">Why Enode</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#111827] leading-[1.12] mb-6">
+            Join other industry leading companies to accelerate green energy
+          </h2>
+          <p class="text-base text-gray-600 leading-relaxed mb-8">
+            Companies around the world, from startups to large energy providers, work with Enode to accelerate the transition to a renewable energy system. The apps and services we power prevent emitting several tonnes of CO₂ every day and help consumers use energy in a smarter and greener way.
+          </p>
+          <a href="#company" class="inline-flex items-center gap-2 bg-surface-pill hover:bg-surface-pillHover text-gray-800 font-semibold text-xs px-4 py-2 rounded-full transition">
+            About our company
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Right: 2x2 Stats Grid -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Stat 1 -->
+          <div class="bg-brand-light p-8 rounded-3xl flex flex-col justify-between min-h-[170px] hover:bg-brand-lightHover transition">
+            <span class="text-4xl sm:text-5xl font-medium tracking-tight text-[#111827]">60+ million</span>
+            <span class="text-xs sm:text-sm font-medium text-emerald-900 mt-4">Energy customers reached</span>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="bg-brand-light p-8 rounded-3xl flex flex-col justify-between min-h-[170px] hover:bg-brand-lightHover transition">
+            <span class="text-4xl sm:text-5xl font-medium tracking-tight text-[#111827]">100+</span>
+            <span class="text-xs sm:text-sm font-medium text-emerald-900 mt-4">Energy hardware models supported</span>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="bg-brand-light p-8 rounded-3xl flex flex-col justify-between min-h-[170px] hover:bg-brand-lightHover transition">
+            <span class="text-4xl sm:text-5xl font-medium tracking-tight text-[#111827]">100GWh+</span>
+            <span class="text-xs sm:text-sm font-medium text-emerald-900 mt-4">Managed through the Enode platform</span>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="bg-brand-light p-8 rounded-3xl flex flex-col justify-between min-h-[170px] hover:bg-brand-lightHover transition">
+            <span class="text-4xl sm:text-5xl font-medium tracking-tight text-[#111827]">25%</span>
+            <span class="text-xs sm:text-sm font-medium text-emerald-900 mt-4">Average savings using Enode's Smart Charging</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== USE CASES ==================== -->
+  <section id="use-cases" class="py-20 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12">
+        <h2 class="text-3xl sm:text-4xl font-medium tracking-tight text-[#111827]">Use cases</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Case 1 -->
+        <div class="flex flex-col items-start justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+              <i class="fa-solid fa-plug text-sm"></i>
+            </div>
+            <h3 class="font-bold text-base text-gray-900 mb-2">Smart charging</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              Optimize the charging of your customers EV with the click of a button
+            </p>
+          </div>
+          <a href="#smart-charging" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+            Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="flex flex-col items-start justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+              <i class="fa-regular fa-clock text-sm"></i>
+            </div>
+            <h3 class="font-bold text-base text-gray-900 mb-2">Energy management and insights</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              Give your customers insight about their energy consumption
+            </p>
+          </div>
+          <a href="#energy-insights" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+            Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="flex flex-col items-start justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+              <i class="fa-solid fa-network-wired text-sm"></i>
+            </div>
+            <h3 class="font-bold text-base text-gray-900 mb-2">Demand response</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              Unlock the ability to participate in flexibility markets
+            </p>
+          </div>
+          <a href="#demand-response" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+            Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Case 4 -->
+        <div class="flex flex-col items-start justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+              <i class="fa-solid fa-car text-sm"></i>
+            </div>
+            <h3 class="font-bold text-base text-gray-900 mb-2">E-mobility</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              Provide smart route planning and rich EV data during public charging
+            </p>
+          </div>
+          <a href="#e-mobility" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+            Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== INDUSTRIES AND APPLICATIONS ==================== -->
+  <section class="py-20 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex items-center justify-between mb-12">
+        <h2 class="text-3xl sm:text-4xl font-medium tracking-tight text-[#111827]">Industries and applications</h2>
+        <a href="#industries" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+          Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- 8 items (2 rows of 4) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        
+        <!-- Industry 1 -->
+        <div class="flex flex-col items-start">
+          <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+            <i class="fa-solid fa-bolt text-sm"></i>
+          </div>
+          <h3 class="font-bold text-base text-gray-900 mb-2">Energy companies</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Create engaging energy apps that increase retention and enable demand response revenue streams
+          </p>
+        </div>
+
+        <!-- Industry 2 -->
+        <div class="flex flex-col items-start">
+          <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+            <i class="fa-solid fa-mobile-screen text-sm"></i>
+          </div>
+          <h3 class="font-bold text-base text-gray-900 mb-2">Energy startups and apps</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Build the next wave of green energy apps, connecting directly to your users' hardware
+          </p>
+        </div>
+
+        <!-- Industry 3 -->
+        <div class="flex flex-col items-start">
+          <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+            <i class="fa-solid fa-battery-half text-sm"></i>
+          </div>
+          <h3 class="font-bold text-base text-gray-900 mb-2">E-mobility providers</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Get real-time EV and charging data across multiple OEMs into your apps and services
+          </p>
+        </div>
+
+        <!-- Industry 4 -->
+        <div class="flex flex-col items-start">
+          <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+            <i class="fa-solid fa-seedling text-sm"></i>
+          </div>
+          <h3 class="font-bold text-base text-gray-900 mb-2">DERMS</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Create residential DR programs with direct access to user's EVs, thermostats and more
+          </p>
+        </div>
+
+        <!-- Industry 5 -->
+        <div class="flex flex-col items-start">
+          <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+            <i class="fa-solid fa-car-side text-sm"></i>
+          </div>
+          <h3 class="font-bold text-base text-gray-900 mb-2">EV fleet managers</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Get SoC and location from your entire fleet in real time - at a fraction of the cost compared to OBD
+          </p>
+        </div>
+
+        <!-- Industry 6 -->
+        <div class="flex flex-col items-start">
+          <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+            <i class="fa-solid fa-wrench text-sm"></i>
+          </div>
+          <h3 class="font-bold text-base text-gray-900 mb-2">Utility and grid owners</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Anticipate grid constraints with aggregated EV data and build demand response programs at scale
+          </p>
+        </div>
+
+        <!-- Industry 7 -->
+        <div class="flex flex-col items-start">
+          <div class="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-4">
+            <i class="fa-solid fa-house-signal text-sm"></i>
+          </div>
+          <h3 class="font-bold text-base text-gray-900 mb-2">Smart home providers</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Integrate EVs, thermostats and other energy hardware into your solution - no hardware hub required
+          </p>
+        </div>
+
+        <!-- Industry 8 -->
+        <div class="flex flex-col items-start">
+          <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700 mb-4 border border-dashed border-gray-300">
+            <i class="fa-solid fa-circle-question text-sm"></i>
+          </div>
+          <h3 class="font-bold text-base text-gray-900 mb-2">Don't see your industry?</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            We also partner with other types of companies. Reach out to learn what we can build together!
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LATEST FROM THE BLOG ==================== -->
+  <section id="blog" class="py-24 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex items-center justify-between mb-12">
+        <h2 class="text-3xl sm:text-4xl font-medium tracking-tight text-[#111827]">Latest from the blog</h2>
+        <a href="#all-blogs" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+          View all <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Blog 1 -->
+        <article class="flex flex-col justify-between items-start">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-light text-brand mb-4">
+              Product update
+            </span>
+            <h3 class="font-bold text-base text-gray-900 mb-2 leading-snug">
+              Enode is now open to everyone, everywhere
+            </h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              We're excited to share that we're opening access to our platform, at no cost to get started. Sign up and start building!
+            </p>
+          </div>
+          <a href="#read-1" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+            Read more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </article>
+
+        <!-- Blog 2 -->
+        <article class="flex flex-col justify-between items-start">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-light text-brand mb-4">
+              Product update
+            </span>
+            <h3 class="font-bold text-base text-gray-900 mb-2 leading-snug">
+              Support for new electric vehicles, solar inverters and more
+            </h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              Today we're releasing support for even more electric vehicle brands and models, solar inverters, and additional command functionality.
+            </p>
+          </div>
+          <a href="#read-2" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+            Read more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </article>
+
+        <!-- Blog 3 -->
+        <article class="flex flex-col justify-between items-start">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-light text-brand mb-4">
+              Company
+            </span>
+            <h3 class="font-bold text-base text-gray-900 mb-2 leading-snug">
+              Enode raises $15M to accelerate the world's energy transition
+            </h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              We've raised a $15M Series A to build the digital infrastructure for a sustainable energy system, and make it easier for the world to transition towards renewable energy.
+            </p>
+          </div>
+          <a href="#read-3" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+            Read more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </article>
+
+        <!-- Blog 4 -->
+        <article class="flex flex-col justify-between items-start">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-brand-light text-brand mb-4">
+              Partnership
+            </span>
+            <h3 class="font-bold text-base text-gray-900 mb-2 leading-snug">
+              Carge partners with Enode
+            </h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+              Carge is a Greek startup that makes charging your EV super easy. They are building the ideal EV roadtrip experience so users can relax and enjoy the ride.
+            </p>
+          </div>
+          <a href="#read-4" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+            Read more <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== READY TO GET STARTED? (CTA) ==================== -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-[#FAFBF9] border border-gray-200/90 rounded-3xl p-8 sm:p-14 relative overflow-hidden shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left: Call to action info -->
+          <div class="lg:col-span-6 flex flex-col items-start z-10">
+            <h2 class="text-4xl sm:text-5xl font-medium tracking-tight text-[#111827] mb-6">
+              Ready to get started?
+            </h2>
+            <p class="text-base text-gray-600 leading-relaxed mb-8 max-w-md">
+              Start exploring our APIs for free with our <a href="#starter-plan" class="text-brand font-semibold underline decoration-brand/50 hover:decoration-brand">Starter plan</a>, or get in touch to have us put together a custom plan for your company.
+            </p>
+            <div class="flex flex-wrap items-center gap-4">
+              <a href="#signup" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-6 py-3.5 rounded-full transition shadow-sm">
+                Start building
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+              <a href="#contact" class="inline-flex items-center gap-2 bg-surface-pill hover:bg-surface-pillHover text-gray-900 text-sm font-semibold px-6 py-3.5 rounded-full transition">
+                Contact sales
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Visual collage (Pie chart + Phone + Code) -->
+          <div class="lg:col-span-6 relative flex justify-center items-center">
+            
+            <!-- Pie Chart Visual (Top Left behind phone) -->
+            <div class="absolute -top-6 -left-6 sm:left-4 w-40 h-40 hidden sm:block">
+              <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-md">
+                <circle cx="60" cy="60" r="50" fill="#0B6A31" stroke="#fff" stroke-width="2"/>
+                <path d="M 60 60 L 60 10 A 50 50 0 0 1 107 43 Z" fill="#2E7D32" stroke="#fff" stroke-width="2"/>
+                <path d="M 60 60 L 107 43 A 50 50 0 0 1 95 95 Z" fill="#00897B" stroke="#fff" stroke-width="2"/>
+                <path d="M 60 60 L 95 95 A 50 50 0 0 1 35 103 Z" fill="#FF8A65" stroke="#fff" stroke-width="2"/>
+                <path d="M 60 60 L 35 103 A 50 50 0 0 1 12 45 Z" fill="#8D6E63" stroke="#fff" stroke-width="2"/>
+                <circle cx="60" cy="60" r="22" fill="#FAFBF9"/>
+              </svg>
+            </div>
+
+            <!-- Phone Card Foreground -->
+            <div class="w-64 bg-white border border-gray-200 rounded-[28px] shadow-2xl p-4 z-10">
+              <div class="flex items-center justify-between pb-2 mb-2 border-b border-gray-100">
+                <div class="flex items-center gap-1.5">
+                  <div class="w-5 h-5 rounded bg-red-50 text-red-600 flex items-center justify-center font-bold text-[8px]">T</div>
+                  <span class="text-[11px] font-bold text-gray-800">Nora's Model 3</span>
+                </div>
+                <div class="w-6 h-3 bg-amber-400 rounded-full flex items-center p-0.5 justify-end">
+                  <div class="w-2.5 h-2.5 bg-white rounded-full"></div>
+                </div>
+              </div>
+              <div class="text-[10px] text-gray-500 mb-2">
+                Charge to <span class="font-bold text-gray-800">90%</span> by <span class="font-bold text-gray-800">07:00</span>
+              </div>
+              <!-- 41% donut -->
+              <div class="flex flex-col items-center my-3">
+                <div class="relative w-24 h-24 flex items-center justify-center">
+                  <svg class="w-full h-full -rotate-90" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="30" stroke="#FBBF24" stroke-width="9" fill="none"/>
+                    <circle cx="40" cy="40" r="30" stroke="#0B6A31" stroke-width="9" stroke-dasharray="188.4" stroke-dashoffset="100" stroke-linecap="round" fill="none"/>
+                  </svg>
+                  <span class="absolute text-xl font-extrabold text-gray-900">41%</span>
+                </div>
+                <span class="mt-2 inline-flex items-center gap-1 text-[9px] font-bold text-white bg-brand px-2 py-0.5 rounded-full">
+                  <i class="fa-solid fa-bolt text-[8px]"></i> Smart charging
+                </span>
+              </div>
+            </div>
+
+            <!-- Connector Pills & Code Card (Right) -->
+            <div class="hidden md:flex flex-col gap-2 -ml-3 z-20 font-mono text-[9px]">
+              <span class="bg-[#102D1A] text-white px-2 py-0.5 rounded-full shadow">vehicle</span>
+              <span class="bg-[#102D1A] text-white px-2 py-0.5 rounded-full shadow">deadline</span>
+              <span class="bg-[#102D1A] text-white px-2 py-0.5 rounded-full shadow">stateOfCharge</span>
+            </div>
+
+            <!-- Mini Code Box -->
+            <div class="w-44 bg-[#141814] text-gray-300 rounded-xl p-3 font-mono text-[9px] border border-gray-800 shadow-xl hidden lg:block -ml-2 z-10 leading-relaxed">
+              <div class="text-[#CE9178] truncate">"8d90101b-3f2f-462a"</div>
+              <div><span class="text-gray-500">isReachable:</span> <span class="text-amber-400">true</span></div>
+              <div><span class="text-gray-500">chargeState:</span> {</div>
+              <div class="pl-2"><span class="text-gray-400">batteryLevel:</span> <span class="text-emerald-400">38</span></div>
+              <div class="pl-2"><span class="text-gray-400">range:</span> <span class="text-emerald-400">127.5</span></div>
+              <div class="pl-2"><span class="text-gray-400">isCharging:</span> <span class="text-amber-400">false</span></div>
+              <div>}</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== NEWSLETTER BAR ==================== -->
+  <section class="border-y border-gray-100 py-10 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+        
+        <!-- Left: Newsletter Info -->
+        <div class="flex items-center gap-4 text-center lg:text-left">
+          <div class="w-12 h-12 rounded-2xl bg-brand-light flex items-center justify-center text-brand shrink-0">
+            <i class="fa-regular fa-envelope text-lg"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-900 text-base">Lead the transition to open energy</h4>
+            <p class="text-sm text-gray-500">Subscribe to our monthly newsletter for the latest insights and inspiration</p>
+          </div>
+        </div>
+
+        <!-- Right: Newsletter Form -->
+        <form class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+          <input 
+            type="email" 
+            required 
+            placeholder="E-mail address" 
+            class="w-full sm:w-80 px-4 py-2.5 rounded-full border border-gray-300 focus:outline-none focus:border-brand text-sm placeholder-gray-400"
+          >
+          <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-hover text-white text-sm font-semibold px-6 py-2.5 rounded-full transition shrink-0 shadow-sm">
+            Sign up
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-white pt-16 pb-12 text-sm text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
+        
+        <!-- Col 1: Brand -->
+        <div class="col-span-2 md:col-span-1">
+          <a href="#" class="flex items-center gap-2 text-[#111827] font-bold text-xl mb-4">
+            <svg class="w-5 h-5 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="3.5" fill="currentColor"></circle>
+            </svg>
+            <span>Enode</span>
+          </a>
+        </div>
+
+        <!-- Col 2: Products -->
+        <div>
+          <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-4">Products</h4>
+          <ul class="space-y-2.5 text-xs font-medium">
+            <li><a href="#connect" class="hover:text-brand transition">Connect</a></li>
+            <li><a href="#optimize" class="hover:text-brand transition">Optimize</a></li>
+            <li><a href="#aggregate" class="hover:text-brand transition">Aggregate</a></li>
+            <li><a href="#pricing" class="hover:text-brand transition">Pricing</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Use Cases -->
+        <div>
+          <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-4">Use cases</h4>
+          <ul class="space-y-2.5 text-xs font-medium">
+            <li><a href="#smart-charging" class="hover:text-brand transition">Smart charging</a></li>
+            <li><a href="#energy-insights" class="hover:text-brand transition">Energy management and insights</a></li>
+            <li><a href="#demand-response" class="hover:text-brand transition">Demand response</a></li>
+            <li><a href="#e-mobility" class="hover:text-brand transition">E-mobility</a></li>
+            <li><a href="#fleet" class="hover:text-brand transition">EV fleet management</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Developers -->
+        <div>
+          <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-4">Developers</h4>
+          <ul class="space-y-2.5 text-xs font-medium">
+            <li><a href="#api" class="hover:text-brand transition">API reference</a></li>
+            <li><a href="#getting-started" class="hover:text-brand transition">Getting started</a></li>
+            <li><a href="#features-guides" class="hover:text-brand transition">Features guides</a></li>
+            <li><a href="#reference" class="hover:text-brand transition">Reference articles</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Company -->
+        <div>
+          <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-4">Company</h4>
+          <ul class="space-y-2.5 text-xs font-medium">
+            <li><a href="#about" class="hover:text-brand transition">About us</a></li>
+            <li><a href="#blog" class="hover:text-brand transition">Blog</a></li>
+            <li><a href="#careers" class="hover:text-brand transition">Careers</a></li>
+            <li><a href="#contact" class="hover:text-brand transition">Contact us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Legal / Disclaimer -->
+      <div class="pt-8 border-t border-gray-100 text-center text-xs text-gray-400">
+        Third party logos and brand names are used for information purposes only and do not necessarily indicate affiliation with Enode.
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Simple JavaScript for interactivity -->
+  <script>
+    // Mobile navigation drawer toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Diagram With Enode / Without Enode interactive toggle
+    const btnWithEnode = document.getElementById('btnWithEnode');
+    const btnWithoutEnode = document.getElementById('btnWithoutEnode');
+    const diagramContainer = document.getElementById('diagramContainer');
+
+    btnWithEnode.addEventListener('click', () => {
+      btnWithEnode.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold bg-brand text-white transition shadow-sm';
+      btnWithoutEnode.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 transition';
+      diagramContainer.style.filter = 'none';
+      diagramContainer.style.opacity = '1';
+    });
+
+    btnWithoutEnode.addEventListener('click', () => {
+      btnWithoutEnode.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold bg-brand text-white transition shadow-sm';
+      btnWithEnode.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 transition';
+      // Visual feedback representing spaghetti connections without Enode
+      diagramContainer.style.transition = 'all 0.3s ease';
+      diagramContainer.style.opacity = '0.75';
+    });
+  </script>
+
+</body>
+</html>
